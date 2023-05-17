@@ -1,0 +1,8 @@
+prefix=/home/tjark/YOLO_Robot/devel
+
+Name: move_plan
+Description: Description of move_plan
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: actionlib_msgs
