@@ -22,7 +22,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${OpenCV_INCLUDE_DIRS}
 )
-add_executable(plan src/move_plan.cpp)
+add_executable(plan src/test.cpp)
 target_link_libraries(plan
    ${catkin_LIBRARIES}
    ${OpenCV_LIBS}

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/plan.dir/src/move_plan.cpp.o"
+  "CMakeFiles/plan.dir/src/test.cpp.o"
   "/home/tjark/YOLO_Robot/devel/lib/move_plan/plan.pdb"
   "/home/tjark/YOLO_Robot/devel/lib/move_plan/plan"
 )

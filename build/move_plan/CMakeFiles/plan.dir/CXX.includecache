@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/tjark/YOLO_Robot/src/move_plan/src/move_plan.cpp
+/home/tjark/YOLO_Robot/src/move_plan/src/test.cpp
 ros/ros.h
 -
 std_msgs/Bool.h
