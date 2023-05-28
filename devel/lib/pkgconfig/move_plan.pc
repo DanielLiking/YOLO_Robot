@@ -1,4 +1,4 @@
-prefix=/home/tjark/YOLO_Robot/devel
+prefix=/home/tjark/YOLO_move/devel
 
 Name: move_plan
 Description: Description of move_plan

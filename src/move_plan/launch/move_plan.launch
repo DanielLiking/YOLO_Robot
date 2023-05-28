@@ -1,4 +1,4 @@
 <launch>
-    <node pkg ="move_plan" type="test" name="plan_node" output="screen">
+    <node pkg ="move_plan" type="plan" name="plan_node" output="screen">
     </node>
 </launch>
