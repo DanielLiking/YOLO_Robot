@@ -64,12 +64,6 @@ void pointPublish(ros::Publisher sample_points_pub,Point point)
     posestamped.pose.orientation.y = msg.y;
     posestamped.pose.orientation.z = msg.z;
     posestamped.pose.orientation.w = msg.w;
-/*
-    posestamped.pose.orientation.x = 0;
-    posestamped.pose.orientation.y = 0;
-    posestamped.pose.orientation.z = 0;
-    posestamped.pose.orientation.w = 1;
-*/
     move_base_msgs::MoveBaseActionGoal actionGoal;
     actionGoal.goal.target_pose.header = posestamped.header;
     actionGoal.goal.target_pose.pose = posestamped.pose;
@@ -113,9 +107,9 @@ int main(int argc, char** argv)
     ros::Publisher sample_points_pub = nh.advertise<move_base_msgs::MoveBaseActionGoal>("/move_base/goal", 10);
     ros::Publisher image_pub = nh.advertise<sensor_msgs::Image>("/raw_image", 1);
 
-    double target_x = -0.069;  // 目标点的 x 坐标
-    double target_y = -0.168;   // 目标点的 y 坐标
-    double radius = 0.2;     // 圆的半径
+    double target_x = 0;  // 目标点的 x 坐标
+    double target_y = 0;   // 目标点的 y 坐标
+    double radius = 2;     // 圆的半径
     int num_points = 16;     // 采样点的数量
     std::vector<Point> sampled_points = samplePointsOnCircle(target_x, target_y, radius, num_points);
    
@@ -125,11 +119,8 @@ int main(int argc, char** argv)
         ros::Duration(0.1).sleep();
         // pub(point)
         pointPublish(sample_points_pub,point);
-        // nav_msgs::Path::ConstPtr plan_valid = ros::topic::waitForMessage<nav_msgs::Path>("/tj_move_base/GlobalPlanner/plan",nh);
-        actionlib_msgs::GoalStatusArray::ConstPtr plan_valid = ros::topic::waitForMessage<actionlib_msgs::GoalStatusArray>("/move_base/status", nh);
-        // if (plan_valid->poses.empty())
-        std::cout<<int (plan_valid->status_list.back().status)  << std::endl;
-        if (int (plan_valid->status_list.back().status) != 1)
+        nav_msgs::Path::ConstPtr plan_valid = ros::topic::waitForMessage<nav_msgs::Path>("/tj_move_base/GlobalPlanner/plan",nh);
+        if (plan_valid->poses.empty())
         {
             ROS_INFO("not reachable");
             continue;
@@ -138,10 +129,6 @@ int main(int argc, char** argv)
             ROS_INFO("reachable");
             pausePublish(pause_pub,false);
         }
-        // if plan_result == False:
-        //     continue;
-        // else:
-        //     pause_pub.publish(false);
         while (ros::ok())
         {
             actionlib_msgs::GoalStatusArray::ConstPtr status_msg = ros::topic::waitForMessage<actionlib_msgs::GoalStatusArray>("/move_base/status", nh);
@@ -149,24 +136,14 @@ int main(int argc, char** argv)
             {
                 ROS_ERROR("Failed to receive move_base status message");
                 break;
-            }else
-	    {
-		ROS_INFO("valid status message");
-	    }
-                  // elif time > max_wait_time:
-            //     break;
-            // else:
-            //     wait_for(robot_pose)
-            //     if delta_x < 0.05 and delta_y < 0.05:
-            //         break
+            }
             const auto& last_status = status_msg->status_list.back();
-            if (int (last_status.status) == 3) 
+            if (last_status.status == 3) 
             {   
                 Capopen(image_pub);
                 break;
             }else
             {
-                std::cout<<int( status_msg->status_list.back().status)<<std::endl;
                 ROS_INFO("status is not 3");
             }
         }
