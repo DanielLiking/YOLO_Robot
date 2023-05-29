@@ -9,6 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   actionlib_msgs
   geometry_msgs
+  move_base_msgs
 )
 find_package(OpenCV REQUIRED)
 find_package(actionlib_msgs REQUIRED)

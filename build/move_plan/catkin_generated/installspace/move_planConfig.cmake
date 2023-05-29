@@ -67,14 +67,14 @@ set(move_plan_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(move_plan_SOURCE_PREFIX /home/tjark/YOLO_Robot/src/move_plan)
-  set(move_plan_DEVEL_PREFIX /home/tjark/YOLO_Robot/devel)
+  set(move_plan_SOURCE_PREFIX /home/tjark/YOLO_move/src/move_plan)
+  set(move_plan_DEVEL_PREFIX /home/tjark/YOLO_move/devel)
   set(move_plan_INSTALL_PREFIX "")
   set(move_plan_PREFIX ${move_plan_DEVEL_PREFIX})
 else()
   set(move_plan_SOURCE_PREFIX "")
   set(move_plan_DEVEL_PREFIX "")
-  set(move_plan_INSTALL_PREFIX /home/tjark/YOLO_Robot/install)
+  set(move_plan_INSTALL_PREFIX /home/tjark/YOLO_move/install)
   set(move_plan_PREFIX ${move_plan_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/tjark/YOLO_Robot/install/lib;/opt/ros/melodic/lib)
+    foreach(path /home/tjark/YOLO_move/install/lib;/home/tjark/YOLO_move/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

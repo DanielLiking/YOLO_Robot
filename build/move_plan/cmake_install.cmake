@@ -1,8 +1,8 @@
-# Install script for directory: /home/tjark/YOLO_Robot/src/move_plan
+# Install script for directory: /home/tjark/YOLO_move/src/move_plan
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/tjark/YOLO_Robot/install")
+  set(CMAKE_INSTALL_PREFIX "/home/tjark/YOLO_move/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tjark/YOLO_Robot/build/move_plan/catkin_generated/installspace/move_plan.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/tjark/YOLO_move/build/move_plan/catkin_generated/installspace/move_plan.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/move_plan/cmake" TYPE FILE FILES
-    "/home/tjark/YOLO_Robot/build/move_plan/catkin_generated/installspace/move_planConfig.cmake"
-    "/home/tjark/YOLO_Robot/build/move_plan/catkin_generated/installspace/move_planConfig-version.cmake"
+    "/home/tjark/YOLO_move/build/move_plan/catkin_generated/installspace/move_planConfig.cmake"
+    "/home/tjark/YOLO_move/build/move_plan/catkin_generated/installspace/move_planConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/move_plan" TYPE FILE FILES "/home/tjark/YOLO_Robot/src/move_plan/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/move_plan" TYPE FILE FILES "/home/tjark/YOLO_move/src/move_plan/package.xml")
 endif()
 

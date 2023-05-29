@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/tjark/YOLO_Robot/install")
+  set(CMAKE_INSTALL_PREFIX "/home/tjark/YOLO_move/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/tjark/YOLO_Robot/build/gtest/googlemock/gtest/cmake_install.cmake")
+  include("/home/tjark/YOLO_move/build/gtest/googlemock/gtest/cmake_install.cmake")
 
 endif()
 

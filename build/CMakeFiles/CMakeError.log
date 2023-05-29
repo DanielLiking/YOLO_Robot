@@ -1,24 +1,24 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp
+Change Dir: /home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_838c9/fast"
-/usr/bin/make -f CMakeFiles/cmTC_838c9.dir/build.make CMakeFiles/cmTC_838c9.dir/build
-make[1]: Entering directory '/home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_838c9.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_838c9.dir/CheckSymbolExists.c.o   -c /home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_838c9
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_838c9.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_838c9.dir/CheckSymbolExists.c.o  -o cmTC_838c9 
-CMakeFiles/cmTC_838c9.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:"/usr/bin/make" "cmTC_a8c8b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a8c8b.dir/build.make CMakeFiles/cmTC_a8c8b.dir/build
+make[1]: Entering directory '/home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a8c8b.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_a8c8b.dir/CheckSymbolExists.c.o   -c /home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_a8c8b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8c8b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_a8c8b.dir/CheckSymbolExists.c.o  -o cmTC_a8c8b 
+CMakeFiles/cmTC_a8c8b.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_838c9.dir/build.make:97: recipe for target 'cmTC_838c9' failed
-make[1]: *** [cmTC_838c9] Error 1
-make[1]: Leaving directory '/home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_838c9/fast' failed
-make: *** [cmTC_838c9/fast] Error 2
+CMakeFiles/cmTC_a8c8b.dir/build.make:97: recipe for target 'cmTC_a8c8b' failed
+make[1]: *** [cmTC_a8c8b] Error 1
+make[1]: Leaving directory '/home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a8c8b/fast' failed
+make: *** [cmTC_a8c8b/fast] Error 2
 
-File /home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -34,22 +34,22 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp
+Change Dir: /home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_0ee51/fast"
-/usr/bin/make -f CMakeFiles/cmTC_0ee51.dir/build.make CMakeFiles/cmTC_0ee51.dir/build
-make[1]: Entering directory '/home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_0ee51.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_0ee51.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_0ee51
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ee51.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_0ee51.dir/CheckFunctionExists.c.o  -o cmTC_0ee51 -lpthreads 
+Run Build Command:"/usr/bin/make" "cmTC_84ccc/fast"
+/usr/bin/make -f CMakeFiles/cmTC_84ccc.dir/build.make CMakeFiles/cmTC_84ccc.dir/build
+make[1]: Entering directory '/home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_84ccc.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_84ccc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_84ccc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_84ccc.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_84ccc.dir/CheckFunctionExists.c.o  -o cmTC_84ccc -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_0ee51.dir/build.make:97: recipe for target 'cmTC_0ee51' failed
-make[1]: *** [cmTC_0ee51] Error 1
-make[1]: Leaving directory '/home/tjark/YOLO_Robot/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_0ee51/fast' failed
-make: *** [cmTC_0ee51/fast] Error 2
+CMakeFiles/cmTC_84ccc.dir/build.make:97: recipe for target 'cmTC_84ccc' failed
+make[1]: *** [cmTC_84ccc] Error 1
+make[1]: Leaving directory '/home/tjark/YOLO_move/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_84ccc/fast' failed
+make: *** [cmTC_84ccc/fast] Error 2
 
 

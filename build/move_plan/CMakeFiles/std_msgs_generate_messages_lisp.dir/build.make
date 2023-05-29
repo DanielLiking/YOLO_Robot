@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tjark/YOLO_Robot/src
+CMAKE_SOURCE_DIR = /home/tjark/YOLO_move/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tjark/YOLO_Robot/build
+CMAKE_BINARY_DIR = /home/tjark/YOLO_move/build
 
 # Utility rule file for std_msgs_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/build: std_msgs_generat
 .PHONY : move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 
 move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	cd /home/tjark/YOLO_Robot/build/move_plan && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/tjark/YOLO_move/build/move_plan && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend:
-	cd /home/tjark/YOLO_Robot/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tjark/YOLO_Robot/src /home/tjark/YOLO_Robot/src/move_plan /home/tjark/YOLO_Robot/build /home/tjark/YOLO_Robot/build/move_plan /home/tjark/YOLO_Robot/build/move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tjark/YOLO_move/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tjark/YOLO_move/src /home/tjark/YOLO_move/src/move_plan /home/tjark/YOLO_move/build /home/tjark/YOLO_move/build/move_plan /home/tjark/YOLO_move/build/move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : move_plan/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
 
