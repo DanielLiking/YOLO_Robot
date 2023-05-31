@@ -7,15 +7,28 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   std_msgs
+  tf
   actionlib_msgs
   geometry_msgs
   move_base_msgs
+  yolov5_ros_msgs
+)
+add_message_files(
+  FILES
+  BoundingBox.msg
+  BoundingBoxes.msg
+)
+
+generate_messages(
+        DEPENDENCIES
+        std_msgs
 )
 find_package(OpenCV REQUIRED)
 find_package(actionlib_msgs REQUIRED)
-
+find_package(yolov5_ros_msgs REQUIRED)
 catkin_package(
   CATKIN_DEPENDS actionlib_msgs
+
 )
 
 include_directories(

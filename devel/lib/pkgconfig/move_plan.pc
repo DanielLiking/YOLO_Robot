@@ -3,6 +3,6 @@ prefix=/home/tjark/YOLO_move/devel
 Name: move_plan
 Description: Description of move_plan
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/tjark/YOLO_move/devel/include
 Libs: -L${prefix}/lib 
 Requires: actionlib_msgs

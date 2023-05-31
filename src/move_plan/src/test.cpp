@@ -6,16 +6,22 @@
 #include <sensor_msgs/Image.h>
 #include <opencv2/opencv.hpp>
 #include <tf/transform_datatypes.h>
+#include <tf/transform_listener.h>
+#include <tf/LinearMath/Vector3.h>
+#include <tf/LinearMath/Matrix3x3.h>
 #include <move_base_msgs/MoveBaseActionGoal.h>
 #include <geometry_msgs/Quaternion.h>
 #include <std_msgs/Header.h>
 #include <nav_msgs/Path.h>
+#include "yolov5_ros_msgs/BoundingBox.h"
+#include "yolov5_ros_msgs/BoundingBoxes.h"
 // 定义点的结构体
 
 struct Point {
     double x;
     double y;
 };
+
 
 std::vector<Point> samplePointsOnCircle(double center_x, double center_y, double radius, int num_points) 
 {
@@ -64,12 +70,7 @@ void pointPublish(ros::Publisher sample_points_pub,Point point)
     posestamped.pose.orientation.y = msg.y;
     posestamped.pose.orientation.z = msg.z;
     posestamped.pose.orientation.w = msg.w;
-/*
-    posestamped.pose.orientation.x = 0;
-    posestamped.pose.orientation.y = 0;
-    posestamped.pose.orientation.z = 0;
-    posestamped.pose.orientation.w = 1;
-*/
+
     move_base_msgs::MoveBaseActionGoal actionGoal;
     actionGoal.goal.target_pose.header = posestamped.header;
     actionGoal.goal.target_pose.pose = posestamped.pose;
@@ -103,6 +104,51 @@ void Capopen(ros::Publisher image_pub)
     std::memcpy(&image_msg.data[0], frame.data, image_msg.data.size());
     image_pub.publish(image_msg);         
 }
+
+void Coordinate_cal(double angle)
+{
+    tf::TransformListener listener;
+    // 等待获取变换信息
+    ros::Duration(1.0).sleep();
+
+    // 定义目标坐标系和源坐标系的名称
+    std::string targetFrame = "world";
+    std::string sourceFrame = "base_link";
+
+    // 创建一个单位向量，表示直线在机器人坐标系中的方向
+    tf::Vector3 direction(1.0, 0.0, 0.0);  // 假设直线沿机器人坐标系的 x 轴方向
+
+    // 创建一个tf::StampedTransform对象，用于存储变换关系
+    tf::StampedTransform transform;
+
+    try
+    {
+        // 获取最近的坐标系变换信息
+        listener.lookupTransform(targetFrame, sourceFrame, ros::Time(0), transform);
+    }
+    catch (tf::TransformException& ex)
+    {
+        ROS_WARN("无法获取坐标系变换: %s", ex.what());
+    
+    }
+
+    // 将方向向量旋转到世界坐标系中
+    //
+    tf::Matrix3x3 rotation = transform.getBasis();
+    tf::Vector3 rotatedDirection = rotation * direction;
+
+    // 计算旋转后的方向向量
+    double cosTheta = std::cos(angle);
+    double sinTheta = std::sin(angle);
+    double rotatedX = rotatedDirection.x() * cosTheta - rotatedDirection.y() * sinTheta;
+    double rotatedY = rotatedDirection.x() * sinTheta + rotatedDirection.y() * cosTheta;
+
+    // 打印旋转后的直线在世界坐标系中的方向
+    ROS_INFO("旋转后的直线在世界坐标系中的方向: x = %f, y = %f, z = %f", rotatedX, rotatedY, rotatedDirection.z());
+
+}
+
+
 int main(int argc, char** argv) 
 {
     ros::init(argc, argv, "plan_node");
@@ -112,6 +158,14 @@ int main(int argc, char** argv)
     ros::Publisher pause_pub = nh.advertise<std_msgs::Bool>("/pause_navigation", 10);
     ros::Publisher sample_points_pub = nh.advertise<move_base_msgs::MoveBaseActionGoal>("/move_base/goal", 10);
     ros::Publisher image_pub = nh.advertise<sensor_msgs::Image>("/raw_image", 1);
+ 
+    yolov5_ros_msgs::BoundingBoxes::ConstPtr msg = ros::topic::waitForMessage<yolov5_ros_msgs::BoundingBoxes>("/yolov5/BoundingBoxes", nh);
+
+    auto message =msg->bounding_boxes;
+    double value = message.back().angle;
+    
+
+    Coordinate_cal(value);
 
     double target_x = -0.069;  // 目标点的 x 坐标
     double target_y = -0.168;   // 目标点的 y 坐标
@@ -119,16 +173,15 @@ int main(int argc, char** argv)
     int num_points = 16;     // 采样点的数量
     std::vector<Point> sampled_points = samplePointsOnCircle(target_x, target_y, radius, num_points);
    
-   for (const auto& point : sampled_points) 
-   {
+    for (const auto& point : sampled_points) 
+    {
         pausePublish(pause_pub, true);
+
         ros::Duration(0.1).sleep();
-        // pub(point)
         pointPublish(sample_points_pub,point);
-        // nav_msgs::Path::ConstPtr plan_valid = ros::topic::waitForMessage<nav_msgs::Path>("/tj_move_base/GlobalPlanner/plan",nh);
         actionlib_msgs::GoalStatusArray::ConstPtr plan_valid = ros::topic::waitForMessage<actionlib_msgs::GoalStatusArray>("/move_base/status", nh);
-        // if (plan_valid->poses.empty())
         std::cout<<int (plan_valid->status_list.back().status)  << std::endl;
+
         if (int (plan_valid->status_list.back().status) != 1)
         {
             ROS_INFO("not reachable");
@@ -153,12 +206,6 @@ int main(int argc, char** argv)
 	    {
 		ROS_INFO("valid status message");
 	    }
-                  // elif time > max_wait_time:
-            //     break;
-            // else:
-            //     wait_for(robot_pose)
-            //     if delta_x < 0.05 and delta_y < 0.05:
-            //         break
             const auto& last_status = status_msg->status_list.back();
             if (int (last_status.status) == 3) 
             {   

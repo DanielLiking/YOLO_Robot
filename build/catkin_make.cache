@@ -1,2 +1,2 @@
-move_plan:yolo_detect:yolov5_ros_msgs
+move_plan:yolo_detect
 -DCATKIN_DEVEL_PREFIX=/home/tjark/YOLO_move/devel -DCMAKE_INSTALL_PREFIX=/home/tjark/YOLO_move/install -G Unix Makefiles

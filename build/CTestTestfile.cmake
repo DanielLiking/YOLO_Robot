@@ -7,4 +7,3 @@
 subdirs("gtest")
 subdirs("move_plan")
 subdirs("yolo_detect")
-subdirs("yolov5_ros_msgs")
